@@ -7,37 +7,118 @@
     <style>
         body { font-family: 'Segoe UI', sans-serif; background: #121212; color: #ddd; max-width: 800px; margin: 0 auto; padding: 20px; }
         h1 { color: #b589d6; text-align: center; border-bottom: 2px solid #333; padding-bottom: 20px; }
+        
+        /* Style de la barre de recherche */
+        #searchBar {
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 20px;
+            background: #1e1e1e;
+            border: 1px solid #333;
+            color: #ddd;
+            font-size: 16px;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        #searchBar:focus { outline: none; border-color: #b589d6; }
+
         ul { list-style: none; padding: 0; }
         li { margin-bottom: 10px; }
         a { display: block; padding: 15px; background: #1e1e1e; text-decoration: none; color: #ccc; border-radius: 5px; transition: 0.2s; }
         a:hover { background: #2d2d2d; color: #b589d6; padding-left: 20px; }
-        strong { color: #fff; margin-right: 10px; }
     </style>
 </head>
 <body>
     <h1>Return of the Mount Hua Sect</h1>
-    <ul>
-        <li><a href="chapitre_1.html"><strong>Ep. 1</strong> : Chapitre 1 : Préface, Qu'est-ce que c'est que cette situation ?</a></li>
-<li><a href="chapitre_2.html"><strong>Ep. 2</strong> : Chapitre 2 : Quel est ce Bordel de Situation ? (2)</a></li>
-<li><a href="chapitre_3.html"><strong>Ep. 3</strong> : Chapitre 3 : Quel est ce Bordel de Situation ? (3)</a></li>
-<li><a href="chapitre_4.html"><strong>Ep. 4</strong> : Episode 4</a></li>
-<li><a href="chapitre_5.html"><strong>Ep. 5</strong> : Chapitre 5 : Qu'est-ce que c'est que cette situation ? (5)</a></li>
-<li><a href="chapitre_6.html"><strong>Ep. 6</strong> : Chapitre 6 : Oh mon Dieu—Le Mont Hua est en Ruines (1)</a></li>
-<li><a href="chapitre_7.html"><strong>Ep. 7</strong> : Chapitre 7 : Oh mon Dieu—Le Mont Hua est en Ruines (2)</a></li>
-<li><a href="chapitre_8.html"><strong>Ep. 8</strong> : Chapitre 8 : Mont Hua en Ruines (3)</a></li>
-<li><a href="chapitre_9.html"><strong>Ep. 9</strong> : Episode 9</a></li>
-<li><a href="chapitre_10.html"><strong>Ep. 10</strong> : Chapitre 10 : Mon Mont Hua est en Ruines (5)</a></li>
-<li><a href="chapitre_11.html"><strong>Ep. 11</strong> : Chapitre 11 : L'effondrement était inévitable, bande d'idiots</a></li>
-<li><a href="chapitre_12.html"><strong>Ep. 12</strong> : Chapitre 12 : L'effondrement était inévitable, bande d'idiots (2)</a></li>
-<li><a href="chapitre_13.html"><strong>Ep. 13</strong> : Chapitre 13 : L'effondrement était inévitable, bande de crétins (3)</a></li>
-<li><a href="chapitre_14.html"><strong>Ep. 14</strong> : Chapitre 14 : L'effondrement était inévitable, bande d'idiots (4)</a></li>
-<li><a href="chapitre_15.html"><strong>Ep. 15</strong> : Chapitre 15 : L'effondrement était inévitable, vous misérables (5)</a></li>
-<li><a href="chapitre_16.html"><strong>Ep. 16</strong> : Chapitre 16 : Est-ce à cause de MOI que le Mont Hua est dans cet état ? (1)</a></li>
-<li><a href="chapitre_17.html"><strong>Ep. 17</strong> : Chapitre 17 : Est-ce de MA faute si le Mont Hua est comme ça ? (2)</a></li>
-<li><a href="chapitre_18.html"><strong>Ep. 18</strong> : Chapitre 18 : Est-ce à cause de MOI que le Mont Hua est dans cet état ? (3)</a></li>
-<li><a href="chapitre_19.html"><strong>Ep. 19</strong> : Chapitre 19 : Est-ce à cause de MOI que le Mont Hua est dans cet état ? (4)</a></li>
-<li><a href="chapitre_20.html"><strong>Ep. 20</strong> : Episode 20</a></li>
+    
+    <input type="text" id="searchBar" onkeyup="filtrerChapitres()" placeholder="Rechercher un chapitre (ex: 12)...">
+    
+    <ul id="listeChapitres">
+        <li><a href="chapitre_1.html">Chapitre 1</a></li>
+<li><a href="chapitre_2.html">Chapitre 2</a></li>
+<li><a href="chapitre_3.html">Chapitre 3</a></li>
+<li><a href="chapitre_4.html">Chapitre 4</a></li>
+<li><a href="chapitre_5.html">Chapitre 5</a></li>
+<li><a href="chapitre_6.html">Chapitre 6</a></li>
+<li><a href="chapitre_7.html">Chapitre 7</a></li>
+<li><a href="chapitre_8.html">Chapitre 8</a></li>
+<li><a href="chapitre_9.html">Chapitre 9</a></li>
+<li><a href="chapitre_10.html">Chapitre 10</a></li>
+<li><a href="chapitre_11.html">Chapitre 11</a></li>
+<li><a href="chapitre_12.html">Chapitre 12</a></li>
+<li><a href="chapitre_13.html">Chapitre 13</a></li>
+<li><a href="chapitre_14.html">Chapitre 14</a></li>
+<li><a href="chapitre_15.html">Chapitre 15</a></li>
+<li><a href="chapitre_16.html">Chapitre 16</a></li>
+<li><a href="chapitre_17.html">Chapitre 17</a></li>
+<li><a href="chapitre_18.html">Chapitre 18</a></li>
+<li><a href="chapitre_19.html">Chapitre 19</a></li>
+<li><a href="chapitre_20.html">Chapitre 20</a></li>
+<li><a href="chapitre_21.html">Chapitre 21</a></li>
+<li><a href="chapitre_22.html">Chapitre 22</a></li>
+<li><a href="chapitre_23.html">Chapitre 23</a></li>
+<li><a href="chapitre_24.html">Chapitre 24</a></li>
+<li><a href="chapitre_25.html">Chapitre 25</a></li>
+<li><a href="chapitre_26.html">Chapitre 26</a></li>
+<li><a href="chapitre_27.html">Chapitre 27</a></li>
+<li><a href="chapitre_28.html">Chapitre 28</a></li>
+<li><a href="chapitre_29.html">Chapitre 29</a></li>
+<li><a href="chapitre_30.html">Chapitre 30</a></li>
+<li><a href="chapitre_31.html">Chapitre 31</a></li>
+<li><a href="chapitre_32.html">Chapitre 32</a></li>
+<li><a href="chapitre_33.html">Chapitre 33</a></li>
+<li><a href="chapitre_34.html">Chapitre 34</a></li>
+<li><a href="chapitre_35.html">Chapitre 35</a></li>
+<li><a href="chapitre_36.html">Chapitre 36</a></li>
+<li><a href="chapitre_37.html">Chapitre 37</a></li>
+<li><a href="chapitre_38.html">Chapitre 38</a></li>
+<li><a href="chapitre_39.html">Chapitre 39</a></li>
+<li><a href="chapitre_40.html">Chapitre 40</a></li>
+<li><a href="chapitre_41.html">Chapitre 41</a></li>
+<li><a href="chapitre_42.html">Chapitre 42</a></li>
+<li><a href="chapitre_43.html">Chapitre 43</a></li>
+<li><a href="chapitre_44.html">Chapitre 44</a></li>
+<li><a href="chapitre_45.html">Chapitre 45</a></li>
+<li><a href="chapitre_46.html">Chapitre 46</a></li>
+<li><a href="chapitre_47.html">Chapitre 47</a></li>
+<li><a href="chapitre_48.html">Chapitre 48</a></li>
+<li><a href="chapitre_49.html">Chapitre 49</a></li>
+<li><a href="chapitre_50.html">Chapitre 50</a></li>
+<li><a href="chapitre_51.html">Chapitre 51</a></li>
+<li><a href="chapitre_52.html">Chapitre 52</a></li>
+<li><a href="chapitre_53.html">Chapitre 53</a></li>
+<li><a href="chapitre_54.html">Chapitre 54</a></li>
+<li><a href="chapitre_55.html">Chapitre 55</a></li>
+<li><a href="chapitre_56.html">Chapitre 56</a></li>
+<li><a href="chapitre_57.html">Chapitre 57</a></li>
+<li><a href="chapitre_58.html">Chapitre 58</a></li>
+<li><a href="chapitre_59.html">Chapitre 59</a></li>
+<li><a href="chapitre_60.html">Chapitre 60</a></li>
+<li><a href="chapitre_61.html">Chapitre 61</a></li>
+<li><a href="chapitre_62.html">Chapitre 62</a></li>
+<li><a href="chapitre_63.html">Chapitre 63</a></li>
+<li><a href="chapitre_64.html">Chapitre 64</a></li>
 
     </ul>
+
+    <script>
+        function filtrerChapitres() {
+            var input, filter, ul, li, a, i, txtValue;
+            input = document.getElementById('searchBar');
+            filter = input.value.toUpperCase();
+            ul = document.getElementById("listeChapitres");
+            li = ul.getElementsByTagName('li');
+
+            for (i = 0; i < li.length; i++) {
+                a = li[i].getElementsByTagName("a")[0];
+                txtValue = a.textContent || a.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    li[i].style.display = "";
+                } else {
+                    li[i].style.display = "none";
+                }
+            }
+        }
+    </script>
 </body>
 </html>
