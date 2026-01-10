@@ -6,9 +6,11 @@
     <title>Novel français du Retour du Clan Hwasan - Sommaire</title>
 
     <style>
+        /* VOTRE CSS D'ORIGINE POUR L'INDEX */
         body { font-family: 'Segoe UI', sans-serif; background: #121212; color: #ddd; max-width: 800px; margin: 0 auto; padding: 20px; }
         h1 { color: #b589d6; text-align: center; border-bottom: 2px solid #333; padding-bottom: 20px; }
         a{color: #b589d6; text-align: center; border-bottom: 2px solid #333; padding-bottom: 20px;}
+        
         /* Style de la barre de recherche */
         #searchBar {
             width: 100%;
@@ -25,13 +27,13 @@
 
         ul { list-style: none; padding: 0; }
         li { margin-bottom: 10px; }
-       ul > a { display: block; padding: 15px; background: #1e1e1e; text-decoration: none; color: #ccc; border-radius: 5px; transition: 0.2s; }
-       ul > a:hover { background: #2d2d2d; color: #b589d6; padding-left: 20px; }
+        ul > a { display: block; padding: 15px; background: #1e1e1e; text-decoration: none; color: #ccc; border-radius: 5px; transition: 0.2s; }
+        ul > a:hover { background: #2d2d2d; color: #b589d6; padding-left: 20px; }
     </style>
 </head>
 <body>
     <h1>Novel français du Retour du Clan Hwasan</h1>
-     <a href="https://discord.gg/X8QmWS7UQT">Lien vers le serveur discord francophone du retour du mont hua</a>
+    <a href="https://discord.gg/X8QmWS7UQT">Lien vers le serveur discord francophone du retour du mont hua</a>
     <input type="text" id="searchBar" onkeyup="filtrerChapitres()" placeholder="Rechercher un chapitre (ex: 12)...">
    
     <ul id="listeChapitres">
@@ -137,34 +139,43 @@
 <li><a href="chapitre_100.html">Chapitre 100</a></li>
 <li><a href="chapitre_101.html">Chapitre 101</a></li>
 <li><a href="chapitre_102.html">Chapitre 102</a></li>
+<li><a href="chapitre_103.html">Chapitre 103</a></li>
+<li><a href="chapitre_104.html">Chapitre 104</a></li>
+<li><a href="chapitre_105.html">Chapitre 105</a></li>
+<li><a href="chapitre_106.html">Chapitre 106</a></li>
 
     </ul>
 
     
 <style>
+    /* CSS SPÉCIFIQUE À LA BANNIÈRE */
     #cookie-banner {
-        display: none;
+        display: none; /* Caché par défaut, affiché par le JS */
         position: fixed;
         bottom: 0;
         left: 0;
         width: 100%;
-        background-color: #1e1e1e; /* Même fond que vos containers */
-        border-top: 2px solid #b589d6; /* Votre couleur d'accent */
+        background-color: #1e1e1e; /* Même fond que vos conteneurs */
+        border-top: 3px solid #b589d6; /* Votre violet clair */
         color: #e0e0e0;
         padding: 20px;
         text-align: center;
-        box-shadow: 0 -5px 20px rgba(0,0,0,0.5);
-        z-index: 9999;
-        font-family: 'Segoe UI', sans-serif;
+        box-shadow: 0 -10px 30px rgba(0,0,0,0.8);
+        z-index: 10000;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         box-sizing: border-box;
     }
     #cookie-banner p {
         margin: 0 0 15px 0;
-        font-size: 15px;
+        font-size: 16px;
+    }
+    #cookie-banner-buttons {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
     }
     #cookie-banner button {
         padding: 10px 20px;
-        margin: 0 10px;
         border: none;
         border-radius: 4px;
         cursor: pointer;
@@ -173,7 +184,7 @@
         transition: 0.2s;
     }
     #btn-accept {
-        background-color: #6a4c93; /* Votre violet */
+        background-color: #6a4c93; /* Votre violet bouton */
         color: white;
     }
     #btn-accept:hover { background-color: #8260b0; }
@@ -181,20 +192,24 @@
     #btn-refuse {
         background-color: #333;
         color: #aaa;
-        border: 1px solid #555;
+        border: 1px solid #444;
     }
     #btn-refuse:hover { background-color: #444; color: #fff; }
 </style>
 
 <div id="cookie-banner">
-  <p>Ce site utilise des cookies pour analyser le trafic anonymement. Acceptez-vous le suivi ?</p>
-  <button id="btn-accept">Accepter</button>
-  <button id="btn-refuse">Refuser</button>
+  <p>Ce site utilise des cookies pour analyser le trafic de manière anonyme. Acceptez-vous le suivi ?</p>
+  <div id="cookie-banner-buttons">
+      <button id="btn-accept">Accepter</button>
+      <button id="btn-refuse">Refuser</button>
+  </div>
 </div>
 
 <script>
+  // ID Google Analytics
   const GA_ID = 'G-439MVFEEK5';
 
+  // Fonction pour charger le script Google (uniquement si accepté)
   function loadGoogleAnalytics() {
     var script = document.createElement('script');
     script.async = true;
@@ -205,25 +220,29 @@
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
     gtag('config', GA_ID);
+    console.log("Analytics chargé.");
   }
 
+  // Vérification du consentement
   const consent = localStorage.getItem('cookieConsent');
   const banner = document.getElementById('cookie-banner');
 
   if (consent === 'accepted') {
-    loadGoogleAnalytics();
+    loadGoogleAnalytics(); // Déjà accepté
   } else if (consent === 'refused') {
-    // Rien ne se passe
+    // Déjà refusé, on ne fait rien
   } else {
-    banner.style.display = 'block';
+    banner.style.display = 'block'; // Premier passage, on affiche
   }
 
+  // Clic Accepter
   document.getElementById('btn-accept').addEventListener('click', function() {
     localStorage.setItem('cookieConsent', 'accepted');
     banner.style.display = 'none';
     loadGoogleAnalytics();
   });
 
+  // Clic Refuser
   document.getElementById('btn-refuse').addEventListener('click', function() {
     localStorage.setItem('cookieConsent', 'refused');
     banner.style.display = 'none';

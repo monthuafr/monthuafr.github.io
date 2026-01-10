@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chapitre 3 | Novel français du Retour du Clan Hwasan</title>
     <style>
+        /* VOTRE CSS D'ORIGINE */
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: #121212;
@@ -79,29 +80,34 @@
 
     
 <style>
+    /* CSS SPÉCIFIQUE À LA BANNIÈRE */
     #cookie-banner {
-        display: none;
+        display: none; /* Caché par défaut, affiché par le JS */
         position: fixed;
         bottom: 0;
         left: 0;
         width: 100%;
-        background-color: #1e1e1e; /* Même fond que vos containers */
-        border-top: 2px solid #b589d6; /* Votre couleur d'accent */
+        background-color: #1e1e1e; /* Même fond que vos conteneurs */
+        border-top: 3px solid #b589d6; /* Votre violet clair */
         color: #e0e0e0;
         padding: 20px;
         text-align: center;
-        box-shadow: 0 -5px 20px rgba(0,0,0,0.5);
-        z-index: 9999;
-        font-family: 'Segoe UI', sans-serif;
+        box-shadow: 0 -10px 30px rgba(0,0,0,0.8);
+        z-index: 10000;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         box-sizing: border-box;
     }
     #cookie-banner p {
         margin: 0 0 15px 0;
-        font-size: 15px;
+        font-size: 16px;
+    }
+    #cookie-banner-buttons {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
     }
     #cookie-banner button {
         padding: 10px 20px;
-        margin: 0 10px;
         border: none;
         border-radius: 4px;
         cursor: pointer;
@@ -110,7 +116,7 @@
         transition: 0.2s;
     }
     #btn-accept {
-        background-color: #6a4c93; /* Votre violet */
+        background-color: #6a4c93; /* Votre violet bouton */
         color: white;
     }
     #btn-accept:hover { background-color: #8260b0; }
@@ -118,20 +124,24 @@
     #btn-refuse {
         background-color: #333;
         color: #aaa;
-        border: 1px solid #555;
+        border: 1px solid #444;
     }
     #btn-refuse:hover { background-color: #444; color: #fff; }
 </style>
 
 <div id="cookie-banner">
-  <p>Ce site utilise des cookies pour analyser le trafic anonymement. Acceptez-vous le suivi ?</p>
-  <button id="btn-accept">Accepter</button>
-  <button id="btn-refuse">Refuser</button>
+  <p>Ce site utilise des cookies pour analyser le trafic de manière anonyme. Acceptez-vous le suivi ?</p>
+  <div id="cookie-banner-buttons">
+      <button id="btn-accept">Accepter</button>
+      <button id="btn-refuse">Refuser</button>
+  </div>
 </div>
 
 <script>
+  // ID Google Analytics
   const GA_ID = 'G-439MVFEEK5';
 
+  // Fonction pour charger le script Google (uniquement si accepté)
   function loadGoogleAnalytics() {
     var script = document.createElement('script');
     script.async = true;
@@ -142,25 +152,29 @@
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
     gtag('config', GA_ID);
+    console.log("Analytics chargé.");
   }
 
+  // Vérification du consentement
   const consent = localStorage.getItem('cookieConsent');
   const banner = document.getElementById('cookie-banner');
 
   if (consent === 'accepted') {
-    loadGoogleAnalytics();
+    loadGoogleAnalytics(); // Déjà accepté
   } else if (consent === 'refused') {
-    // Rien ne se passe
+    // Déjà refusé, on ne fait rien
   } else {
-    banner.style.display = 'block';
+    banner.style.display = 'block'; // Premier passage, on affiche
   }
 
+  // Clic Accepter
   document.getElementById('btn-accept').addEventListener('click', function() {
     localStorage.setItem('cookieConsent', 'accepted');
     banner.style.display = 'none';
     loadGoogleAnalytics();
   });
 
+  // Clic Refuser
   document.getElementById('btn-refuse').addEventListener('click', function() {
     localStorage.setItem('cookieConsent', 'refused');
     banner.style.display = 'none';
